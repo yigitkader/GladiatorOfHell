@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889100757774968502}
   m_Layer: 0
-  m_Name: Arena 1
+  m_Name: Arena1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
