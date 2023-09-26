@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GladiatorScript : MonoBehaviour
+public class GladiatorMoveScript : MonoBehaviour
 {
 
-    private CharacterController characterController;
+    private CharacterController gladiatorController;
+
+    private GladiatorAnimations gladiatorAnimations;
 
     public float movementSpeed = GladiatorModel.MOVEMENT_SPEED;
     public float gravity = GladiatorModel.GRAVITY;
@@ -20,7 +22,8 @@ public class GladiatorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        gladiatorController = GetComponent<CharacterController>();
+        gladiatorAnimations = GetComponent<GladiatorAnimations>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,8 @@ public class GladiatorScript : MonoBehaviour
     {
         Move();
         Rotate();
+        AnimateRun();
+        AnimateWalkBack();
     }
 
 
@@ -35,16 +40,19 @@ public class GladiatorScript : MonoBehaviour
         if(Input.GetAxis(Axis.VERTICAL_AXIS) >0){
             
             Vector3 moveDirection = transform.forward;
-            moveDirection.y = gravity * Time.deltaTime;
+            moveDirection.y -= gravity * Time.deltaTime;
 
-            characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
         }else if(Input.GetAxis(Axis.VERTICAL_AXIS) < 0){
 
             // Going backwards
             Vector3 moveDirection = -transform.forward;
-            moveDirection.y = gravity * Time.deltaTime;
+            moveDirection.y -= gravity * Time.deltaTime;
 
-            characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+        }else{
+            // if we dont have any input to move the character
+            gladiatorController.Move(Vector3.zero);
         }
     }
 
@@ -68,4 +76,27 @@ public class GladiatorScript : MonoBehaviour
             );
         }
     }
+
+
+
+    void AnimateRun(){
+        //Debug.Log(gladiatorController.velocity.sqrMagnitude);
+        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) > 0){
+            gladiatorAnimations.Run(true);
+        }else{
+            gladiatorAnimations.Run(false);
+        }
+    }
+
+
+    void AnimateWalkBack(){
+        //Debug.Log(gladiatorController.velocity.sqrMagnitude);
+        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) < 0){
+            gladiatorAnimations.WalkBack(true);
+        }else{
+            gladiatorAnimations.WalkBack(false);
+        }
+    }
+
+
 }

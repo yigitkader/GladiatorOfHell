@@ -17,9 +17,17 @@ public class Tags{
 }
 
 public class AnimationTags{
-    public const string WALK_PARAMATER="Walk";
-    public const string DEFEND_PARAMATER="Defend";
-    public const string ATTACK_TRIGGER_0="Attack0";
-    public const string ATTACK_TRIGGER_1="Attack1";
-    public const string ATTACK_TRIGGER_2="Attack2";
+
+    public const string SLOW_RUN_ANIMATION_STATE = "SlowRunAnimationState";
+
+    public const string WALK_BACK_ANIMATION_STATE="WalkBackAnimationState";
+
+    public const string STANDING_ATTACT_ANIMATION_STATE="StandingAttackAnimationState";
+
+    public const string MUTANT_PUNCH_ATTACK_ANIMATION_STATE="MutantPunchAttackAnimationState";
+
+    public const string JUMP_ATTACK_ANIMATION_STATE="JumpAnimationAttackState";
+
+    public const string SWORD_AND_SHIELD_BLOCK_DEFENSE_STATE="SwordAndShieldBlockDefenseState";
+
 }
