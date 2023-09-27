@@ -15,7 +15,6 @@ public class GladiatorAnimations : MonoBehaviour
     }
 
 
-
     public void Run(bool run){
         animator.SetBool(AnimationTags.SLOW_RUN_ANIMATION_STATE,run);    
     }
@@ -26,36 +25,21 @@ public class GladiatorAnimations : MonoBehaviour
 
 
     public void SwordAndShieldBlockDefense(bool defense){
-        animator.SetBool(AnimationTags.SWORD_AND_SHIELD_BLOCK_DEFENSE_STATE,defense);
+        animator.SetBool(AnimationTags.SWORD_AND_SHIELD_BLOCK_DEFEND_STATE,defense);
     }
 
 
-    public void StandingAttack(){
-        animator.SetTrigger(AnimationTags.STANDING_ATTACT_ANIMATION_STATE);
+    public void G_StandingMeleeMidAttack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_MELEE_MID_ATTACK_STATE);
     }
 
-    public void MutantPunchAttack(){
-        animator.SetTrigger(AnimationTags.MUTANT_PUNCH_ATTACK_ANIMATION_STATE);
+    public void G_Standing2HMagicAttack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_2H_MAGIC_ATTACK_STATE);
     }
 
-    public void JumpAttack(){
-        animator.SetTrigger(AnimationTags.JUMP_ATTACK_ANIMATION_STATE);
+    public void G_StandingMelee360Attack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_MELEE_360_ATTACK_STATE);
     }
-
-
-    public void randomAttack(){
-
-        int attackNumber = Random.Range(0,3);
-
-        if(attackNumber == 0){
-            StandingAttack();
-        }else if(attackNumber == 1){
-            MutantPunchAttack();
-        }else if(attackNumber ==2){
-            JumpAttack();
-        }   
-    }
-
 
     
 }
