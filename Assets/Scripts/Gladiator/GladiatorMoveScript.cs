@@ -77,6 +77,20 @@ public class GladiatorMoveScript : MonoBehaviour
         }
     }
 
+    private void Rotate(){
+        Vector3 rotationDirection = Vector3.zero;
+
+        if(Input.GetAxis(Axis.HORIZONTAL_AXIS) < 0){
+            rotationDirection = transform.TransformDirection(Vector3.left);
+        }
+        if(Input.GetAxis(Axis.HORIZONTAL_AXIS) > 0){
+            rotationDirection = transform.TransformDirection(Vector3.right);
+        }
+
+        if(rotationDirection != Vector3.zero){
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rotationDirection),rotateDegreesPerSecond * Time.deltaTime);
+        }
+    }
 
 
     void AnimateRun(){
