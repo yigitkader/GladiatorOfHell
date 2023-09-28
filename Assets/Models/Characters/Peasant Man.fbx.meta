@@ -3,7 +3,22 @@ guid: a5983df0656a94744b1f93a63f2a7ad8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Peasant_Man_diffuse
+    second: {fileID: 2800000, guid: cd9b8ec3acdc244edabb47d2bdd586b0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Peasant_Man_normal
+    second: {fileID: 2800000, guid: 7f78da527889441c9a42290e044e3726, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Peasant_Man_specular
+    second: {fileID: 2800000, guid: ddc09d4a1df794bb98b9b0e623e7d96e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
