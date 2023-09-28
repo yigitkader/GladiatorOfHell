@@ -3,7 +3,22 @@ guid: 72b56c5ea943240fda9d848fdbae4a91
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Dreyar_diffuse
+    second: {fileID: 2800000, guid: a5e2cd2285d15491ba50f0a68f950a52, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Dreyar_normal
+    second: {fileID: 2800000, guid: 76f69424737bd44f38432d5f34d01907, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Dreyar_specular
+    second: {fileID: 2800000, guid: eec06775b2c9f445abae09f808709164, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
