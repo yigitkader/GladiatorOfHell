@@ -12,12 +12,16 @@ public class Axis
 
 
 public class Tags{
-    public const string GLADIATOR_TAG="Gladitor";
+    public const string GLADIATOR_TAG="Gladiator";
     public const string ENEMY_TAG="Enemy";
+
+    public const string PLEASANT_MAN_TAG="PleasantMan";
 }
 
 public class AnimationTags{
 
+
+    // Gladiator
     public const string SLOW_RUN_ANIMATION_STATE = "SlowRunAnimationState";
 
     public const string WALK_BACK_ANIMATION_STATE="WalkBackAnimationState";
@@ -29,5 +33,17 @@ public class AnimationTags{
     public const string G_STANDING_MELEE_360_ATTACK_STATE="G_Standing_Melee_360_Attack_State";
 
     public const string SWORD_AND_SHIELD_BLOCK_DEFEND_STATE="SwordAndShieldBlockDefendState";
+
+
+
+    // Enemies
+
+    public const string ATTACK_1_STATE = "Attack1";
+
+    public const string ATTACK_2_STATE = "Attack2";
+
+    public const string ATTACK_3_STATE = "Attack3";
+
+    public const string ATTACK_4_STATE = "Attack4";
 
 }
