@@ -33,7 +33,6 @@ public class PleasantManController : MonoBehaviour{
 
 
     private void Awake() {
-        Debug.Log(Tags.GLADIATOR_TAG);
         pleasantManAnimations = GetComponent<PleasantManAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).transform;
