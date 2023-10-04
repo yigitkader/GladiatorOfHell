@@ -32,6 +32,8 @@ public class PleasantManController : MonoBehaviour{
     private PleasantManState pleasantManState;
 
 
+    public GameObject attackPoint;
+
     private void Awake() {
         pleasantManAnimations = GetComponent<PleasantManAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -89,6 +91,17 @@ public class PleasantManController : MonoBehaviour{
             pleasantManState = PleasantManState.CHASE;
         }
 
+    }
+
+
+    public void ActivateAttackPoint(){
+        attackPoint.SetActive(true);
+    }
+
+    public void DeactivateAttackPoint(){
+        if(attackPoint.activeInHierarchy){
+            attackPoint.SetActive(false);
+        }
     }
 
 
