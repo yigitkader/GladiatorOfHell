@@ -3,55 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum PleasantManState{
+public enum EnemyState{
     CHASE,
     ATTACK
 }
-public class PleasantManController : MonoBehaviour{
+public class L1EnemyController : MonoBehaviour{
     
-    private PleasantManAnimations pleasantManAnimations;
+    private L1EnemyAnimations enemyAnimations;
     private NavMeshAgent navMeshAgent;
 
     private Transform gladiatorTarget;
 
     [SerializeField]
-    private float movementSpeed =  PleasantManModel.MOVEMENT_SPEED;
+    private float movementSpeed =  L1EnemyModel.MOVEMENT_SPEED;
 
     [SerializeField]
-    private float attackDistance = PleasantManModel.ATTACK_DISTANCE;
+    private float attackDistance = L1EnemyModel.ATTACK_DISTANCE;
 
     [SerializeField]
-    private float chaseGladiatorAfterAttackDistance = PleasantManModel.CHASE_GLADIATOR_AFTER_ATTACK_DISTANCE;
+    private float chaseGladiatorAfterAttackDistance = L1EnemyModel.CHASE_GLADIATOR_AFTER_ATTACK_DISTANCE;
 
     [SerializeField]
-    private float waitBeforeAttackTime = PleasantManModel.WAIT_BEFORE_ATTACK_TIME;
+    private float waitBeforeAttackTime = L1EnemyModel.WAIT_BEFORE_ATTACK_TIME;
 
     private float attackTimer ;
 
 
-    private PleasantManState pleasantManState;
+    private EnemyState enemyState;
 
+
+    public GameObject attackPoint;
 
     private void Awake() {
-        Debug.Log(Tags.GLADIATOR_TAG);
-        pleasantManAnimations = GetComponent<PleasantManAnimations>();
+        enemyAnimations = GetComponent<L1EnemyAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).transform;
     }
 
     private void Start() {
-        pleasantManState = PleasantManState.CHASE;
+        enemyState = EnemyState.CHASE;
 
         attackTimer = waitBeforeAttackTime;
     }
 
     private void Update() {
 
-        if(pleasantManState == PleasantManState.CHASE){
+        if(enemyState == EnemyState.CHASE){
             ChaseGladiator();
         }
 
-        if(pleasantManState == PleasantManState.ATTACK){
+        if(enemyState == EnemyState.ATTACK){
             AttackToGladiator();
         }
         
@@ -63,33 +64,44 @@ public class PleasantManController : MonoBehaviour{
         navMeshAgent.speed = movementSpeed;
 
         if(navMeshAgent.velocity.sqrMagnitude == 0){
-            pleasantManAnimations.Run(false);
+            enemyAnimations.Run(false);
         }else{
-            pleasantManAnimations.Run(true);
+            enemyAnimations.Run(true);
         }
 
 
         if(Vector3.Distance(transform.position,gladiatorTarget.position) <= attackDistance){
-            pleasantManState = PleasantManState.ATTACK;
+            enemyState = EnemyState.ATTACK;
         }
     }
 
     private void AttackToGladiator(){
         navMeshAgent.velocity = Vector3.zero;
         navMeshAgent.isStopped = true;
-        pleasantManAnimations.Run(false);
+        enemyAnimations.Run(false);
 
         attackTimer += Time.deltaTime;
         if(attackTimer > waitBeforeAttackTime){
-            pleasantManAnimations.RandomAttack();
+            enemyAnimations.RandomAttack();
             attackTimer = 0f;
         }
 
         if(Vector3.Distance(transform.position, gladiatorTarget.position) > attackDistance + chaseGladiatorAfterAttackDistance){
             navMeshAgent.isStopped = false;
-            pleasantManState = PleasantManState.CHASE;
+            enemyState = EnemyState.CHASE;
         }
 
+    }
+
+
+    public void ActivateAttackPoint(){
+        attackPoint.SetActive(true);
+    }
+
+    public void DeactivateAttackPoint(){
+        if(attackPoint.activeInHierarchy){
+            attackPoint.SetActive(false);
+        }
     }
 
 

@@ -14,6 +14,7 @@ public class Axis
 public class Tags{
     public const string GLADIATOR_TAG="Gladiator";
     public const string ENEMY_TAG="Enemy";
+    public const string ENEMY_TAG_LEVEL1="EnemyLevel1";
 
     public const string PLEASANT_MAN_TAG="PleasantMan";
 }

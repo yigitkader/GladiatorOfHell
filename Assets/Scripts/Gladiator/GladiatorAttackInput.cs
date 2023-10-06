@@ -8,6 +8,7 @@ public class GladiatorAttackInput : MonoBehaviour
 
     private GladiatorAnimations gladiatorAnimations;
 
+    public GameObject attackPoint;
 
     void Awake()
     {
@@ -50,6 +51,16 @@ public class GladiatorAttackInput : MonoBehaviour
 
     }
 
+
+    public void ActivateAttackPoint(){
+        attackPoint.SetActive(true);
+    }
+
+    public void DeactivateAttackPoint(){
+        if(attackPoint.activeInHierarchy){
+            attackPoint.SetActive(false);
+        }
+    }
 
 
 
