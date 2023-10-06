@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HealthScript : MonoBehaviour
+public class L1HealthScript : MonoBehaviour
 {
 
     public float health = 100f;
@@ -37,7 +37,7 @@ public class HealthScript : MonoBehaviour
             if(isPlayer){
                 StopGladiator();
 
-                GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG).GetComponent<EnemyController>().enabled = false;
+                GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1).GetComponent<L1EnemyController>().enabled = false;
 
 
             }else{
@@ -65,7 +65,7 @@ public class HealthScript : MonoBehaviour
 
 
     private void StopEnemy(){
-        GetComponent<EnemyController>().enabled = false;
+        GetComponent<L1EnemyController>().enabled = false;
         GetComponent<NavMeshAgent>().enabled =false;
     }
 

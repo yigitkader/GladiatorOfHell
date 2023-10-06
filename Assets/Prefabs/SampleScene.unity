@@ -2007,7 +2007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485829059701446937, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 8485829059701446937, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2091,7 +2091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9117652058734936995, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
       propertyPath: m_TagString
-      value: PleasantMan
+      value: EnemyLevel1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

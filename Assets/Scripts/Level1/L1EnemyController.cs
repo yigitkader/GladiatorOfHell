@@ -7,24 +7,24 @@ public enum EnemyState{
     CHASE,
     ATTACK
 }
-public class EnemyController : MonoBehaviour{
+public class L1EnemyController : MonoBehaviour{
     
-    private EnemyAnimations enemyAnimations;
+    private L1EnemyAnimations enemyAnimations;
     private NavMeshAgent navMeshAgent;
 
     private Transform gladiatorTarget;
 
     [SerializeField]
-    private float movementSpeed =  EnemyModel.MOVEMENT_SPEED;
+    private float movementSpeed =  L1EnemyModel.MOVEMENT_SPEED;
 
     [SerializeField]
-    private float attackDistance = EnemyModel.ATTACK_DISTANCE;
+    private float attackDistance = L1EnemyModel.ATTACK_DISTANCE;
 
     [SerializeField]
-    private float chaseGladiatorAfterAttackDistance = EnemyModel.CHASE_GLADIATOR_AFTER_ATTACK_DISTANCE;
+    private float chaseGladiatorAfterAttackDistance = L1EnemyModel.CHASE_GLADIATOR_AFTER_ATTACK_DISTANCE;
 
     [SerializeField]
-    private float waitBeforeAttackTime = EnemyModel.WAIT_BEFORE_ATTACK_TIME;
+    private float waitBeforeAttackTime = L1EnemyModel.WAIT_BEFORE_ATTACK_TIME;
 
     private float attackTimer ;
 
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour{
     public GameObject attackPoint;
 
     private void Awake() {
-        enemyAnimations = GetComponent<EnemyAnimations>();
+        enemyAnimations = GetComponent<L1EnemyAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).transform;
     }
