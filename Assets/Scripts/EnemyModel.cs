@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PleasantManModel : MonoBehaviour
+public class EnemyModel : MonoBehaviour
 {
     
     public const float MOVEMENT_SPEED = 2f;

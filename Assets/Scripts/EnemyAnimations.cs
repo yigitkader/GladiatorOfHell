@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PleasantManAnimations : MonoBehaviour
+public class EnemyAnimations : MonoBehaviour
 {
    
     private Animator animator;
