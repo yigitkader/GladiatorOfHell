@@ -8,6 +8,7 @@ TagManager:
   - PleasantMan
   - Enemy
   - EnemyLevel1
+  - MainMenu
   layers:
   - Default
   - TransparentFX
