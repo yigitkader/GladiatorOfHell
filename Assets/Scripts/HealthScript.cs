@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealthScript : MonoBehaviour
 {
@@ -34,10 +35,13 @@ public class HealthScript : MonoBehaviour
             StartCoroutine(AllowRotate());
 
             if(isPlayer){
-                GetComponent<GladiatorMoveScript>().enabled = false;
-                GetComponent<GladiatorAttackInput>().enabled = false;
-            }else{
+                StopGladiator();
 
+                GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG).GetComponent<EnemyController>().enabled = false;
+
+
+            }else{
+                StopEnemy();
             }
         }
 
@@ -57,6 +61,19 @@ public class HealthScript : MonoBehaviour
         playerDied = true;
         yield return new WaitForSeconds(rotateTime);
         playerDied = false;
+    }
+
+
+    private void StopEnemy(){
+        GetComponent<EnemyController>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled =false;
+    }
+
+    private void StopGladiator(){
+        GetComponent<GladiatorMoveScript>().enabled = false;
+        GetComponent<GladiatorAttackInput>().enabled = false;
+
+        Camera.main.transform.SetParent(null);
     }
 
 

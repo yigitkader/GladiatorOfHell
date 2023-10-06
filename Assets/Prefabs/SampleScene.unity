@@ -609,7 +609,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   radius: 1
-  damage: 20
+  damage: 25
 --- !u!4 &1147645391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091006491498289884, guid: 4eb910c5e8c184a0d9ef62b5292d3f0d, type: 3}
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  isPlayer: 0
+  isPlayer: 1
 --- !u!1 &1424764366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9117652058734936995, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
