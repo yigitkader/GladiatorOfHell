@@ -10,9 +10,12 @@ public class GladiatorAttackInput : MonoBehaviour
 
     public GameObject attackPoint;
 
+    private GladiatorShieldScript gladiatorShieldScript;
+
     void Awake()
     {
         gladiatorAnimations = GetComponent<GladiatorAnimations>();       
+        gladiatorShieldScript = GetComponent<GladiatorShieldScript>();
     }
 
     // Update is called once per frame
@@ -21,10 +24,12 @@ public class GladiatorAttackInput : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.J)){
             gladiatorAnimations.SwordAndShieldBlockDefense(true);
+            gladiatorShieldScript.ActivateShield(true);
         }
 
         if(Input.GetKeyUp(KeyCode.J)){
             gladiatorAnimations.SwordAndShieldBlockDefense(false);
+            gladiatorShieldScript.ActivateShield(false);
         }
 
         if(Input.GetKeyDown(KeyCode.K)){

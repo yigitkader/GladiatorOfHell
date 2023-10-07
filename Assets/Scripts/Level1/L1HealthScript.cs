@@ -22,6 +22,8 @@ public class L1HealthScript : MonoBehaviour
     [SerializeField]
     private Image healthUI;
 
+    [HideInInspector]
+    public bool shieldActived;
 
     private void Update() {
         if(playerDied){
@@ -31,6 +33,12 @@ public class L1HealthScript : MonoBehaviour
     }
 
     public void ApplyDamage(float damage){
+
+        if(shieldActived){
+            // will change for other levels
+            return;
+        }
+
         health -= damage;
 
         if(healthUI != null){
