@@ -34,6 +34,8 @@ public class L1EnemyController : MonoBehaviour{
 
     public GameObject attackPoint;
 
+
+
     private void Awake() {
         enemyAnimations = GetComponent<L1EnemyAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();

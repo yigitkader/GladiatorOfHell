@@ -16,6 +16,7 @@ public class GladiatorMoveScript : MonoBehaviour
 
     public float rotationDegreesPerSecond = GladiatorModel.ROTATION_DEGREES_PER_SECOND;
 
+    private Animator animator;
 
 
 
@@ -23,7 +24,9 @@ public class GladiatorMoveScript : MonoBehaviour
     void Start()
     {
         gladiatorController = GetComponent<CharacterController>();
-        gladiatorAnimations = GetComponent<GladiatorAnimations>();
+        gladiatorAnimations = GetComponent<GladiatorAnimations>();        
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -31,25 +34,31 @@ public class GladiatorMoveScript : MonoBehaviour
     {
         Move();
         Rotate();
+    
         AnimateRun();
-        AnimateWalkBack();
+        AnimateWalkBack(); 
     }
 
 
     private void Move(){
         if(Input.GetAxis(Axis.VERTICAL_AXIS) >0){
             
-            Vector3 moveDirection = transform.forward;
-            moveDirection.y -= gravity * Time.deltaTime;
+            if(!GladiatorAnimationsRunning()){
+                Vector3 moveDirection = transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
 
-            gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+                gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            }
         }else if(Input.GetAxis(Axis.VERTICAL_AXIS) < 0){
-
             // Going backwards
-            Vector3 moveDirection = -transform.forward;
-            moveDirection.y -= gravity * Time.deltaTime;
 
-            gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            if(!GladiatorAnimationsRunning()){
+                Vector3 moveDirection = -transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
+
+                gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+
+            }
         }else{
             // if we dont have any input to move the character
             gladiatorController.Move(Vector3.zero);
@@ -95,6 +104,20 @@ public class GladiatorMoveScript : MonoBehaviour
         }else{
             gladiatorAnimations.WalkBack(false);
         }
+    }
+
+
+    private bool GladiatorAnimationsRunning(){
+        
+        if( animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+        ){
+          return true;  
+        }
+
+        return false;
     }
 
 
