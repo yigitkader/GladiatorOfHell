@@ -25,6 +25,13 @@ public class L1HealthScript : MonoBehaviour
     [HideInInspector]
     public bool shieldActived;
 
+    private CharacterSoundFX characterSoundFX;
+
+
+    private void Awake() {
+        characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
+    }
+
     private void Update() {
         if(playerDied){
             // Can switch with animation
@@ -46,6 +53,9 @@ public class L1HealthScript : MonoBehaviour
         }
 
         if(health <= 0){
+            
+            characterSoundFX.SoundDie();
+
             GetComponent<Animator>().enabled = false;
 
             StartCoroutine(AllowRotate());

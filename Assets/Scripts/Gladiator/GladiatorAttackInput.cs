@@ -12,10 +12,14 @@ public class GladiatorAttackInput : MonoBehaviour
 
     private GladiatorShieldScript gladiatorShieldScript;
 
+    private CharacterSoundFX characterSoundFX;
+
     void Awake()
     {
         gladiatorAnimations = GetComponent<GladiatorAnimations>();       
         gladiatorShieldScript = GetComponent<GladiatorShieldScript>();
+        characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
+
     }
 
     // Update is called once per frame
@@ -47,10 +51,13 @@ public class GladiatorAttackInput : MonoBehaviour
     public void RandomAttack(){
         int attackNumber = Random.Range(0,3);
         if(attackNumber == 0){
+            characterSoundFX.SoundAttack1();
             gladiatorAnimations.G_StandingMeleeMidAttack();
         }else if(attackNumber == 1){
+            characterSoundFX.SoundAttack2();
             gladiatorAnimations.G_Standing2HMagicAttack();
         }else if(attackNumber == 2){
+            characterSoundFX.SoundAttack3();
             gladiatorAnimations.G_StandingMelee360Attack();
         }   
 
