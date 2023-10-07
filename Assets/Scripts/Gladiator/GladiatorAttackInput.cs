@@ -14,11 +14,15 @@ public class GladiatorAttackInput : MonoBehaviour
 
     private CharacterSoundFX characterSoundFX;
 
+    private Animator animator;
+
     void Awake()
     {
         gladiatorAnimations = GetComponent<GladiatorAnimations>();       
         gladiatorShieldScript = GetComponent<GladiatorShieldScript>();
         characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
+        animator = GetComponent<Animator>();
+
 
     }
 
@@ -51,14 +55,21 @@ public class GladiatorAttackInput : MonoBehaviour
     public void RandomAttack(){
         int attackNumber = Random.Range(0,3);
         if(attackNumber == 0){
-            characterSoundFX.SoundAttack1();
-            gladiatorAnimations.G_StandingMeleeMidAttack();
+            if(G_StandingMeleeMidAttackReady()){
+                gladiatorAnimations.G_StandingMeleeMidAttack();
+                characterSoundFX.SoundAttack1();
+            }
         }else if(attackNumber == 1){
-            characterSoundFX.SoundAttack2();
-            gladiatorAnimations.G_Standing2HMagicAttack();
+            if(G_Standing_2H_Magic_Attack_State()){
+                gladiatorAnimations.G_Standing2HMagicAttack();
+                characterSoundFX.SoundAttack2();
+            }
         }else if(attackNumber == 2){
-            characterSoundFX.SoundAttack3();
-            gladiatorAnimations.G_StandingMelee360Attack();
+            if(G_Standing_Melee_360_Attack_State()){
+                gladiatorAnimations.G_StandingMelee360Attack();
+                characterSoundFX.SoundAttack3();
+            }
+            
         }   
 
     }
@@ -75,5 +86,42 @@ public class GladiatorAttackInput : MonoBehaviour
     }
 
 
+
+    private bool G_StandingMeleeMidAttackReady(){
+        
+        if( animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+        ){
+          return false;  
+        }
+
+        return true;
+    }
+
+    private bool G_Standing_2H_Magic_Attack_State(){
+        
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+        ){
+          return false;  
+        }
+
+        return true;
+    }
+
+    private bool G_Standing_Melee_360_Attack_State(){
+        
+        if( animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+        ){
+          return false;  
+        }
+
+        return true;
+    }
 
 }//class end

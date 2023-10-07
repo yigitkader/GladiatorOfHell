@@ -274,6 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a116f296dd0847ad83d5e157d973f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSound1: {fileID: 8300000, guid: 536f4101f9c34504e9580903d283b016, type: 3}
+  attackSound2: {fileID: 8300000, guid: 81e458a91c51d5041bf47c8b78ed37aa, type: 3}
+  attackSound3: {fileID: 8300000, guid: 7ecee9a1b3091ca42ba960f5469551b4, type: 3}
+  attackSound4: {fileID: 8300000, guid: db64ce470a72cc647b5cc8b00315b2a5, type: 3}
+  dieSound: {fileID: 8300000, guid: 88443ba27b27a2a4cadc82caf0b7ce11, type: 3}
 --- !u!82 &688034625
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1245,6 +1250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a116f296dd0847ad83d5e157d973f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSound1: {fileID: 8300000, guid: 536f4101f9c34504e9580903d283b016, type: 3}
+  attackSound2: {fileID: 8300000, guid: 81e458a91c51d5041bf47c8b78ed37aa, type: 3}
+  attackSound3: {fileID: 8300000, guid: 7ecee9a1b3091ca42ba960f5469551b4, type: 3}
+  attackSound4: {fileID: 8300000, guid: 536f4101f9c34504e9580903d283b016, type: 3}
+  dieSound: {fileID: 8300000, guid: 3360875faca42f045b2b109d69dfb809, type: 3}
 --- !u!82 &1595840554
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2964,6 +2974,14 @@ PrefabInstance:
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 851614431}
+    - target: {fileID: 6208842169609715691, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
+      propertyPath: attackDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208842169609715691, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
+      propertyPath: waitBeforeAttackTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6498901331099478106, guid: 7b6689c1dfbf24566a95d8b2511c2575, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 58.010006

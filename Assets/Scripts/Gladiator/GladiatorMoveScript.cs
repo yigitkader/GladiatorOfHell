@@ -24,8 +24,7 @@ public class GladiatorMoveScript : MonoBehaviour
     void Start()
     {
         gladiatorController = GetComponent<CharacterController>();
-        gladiatorAnimations = GetComponent<GladiatorAnimations>();
-        
+        gladiatorAnimations = GetComponent<GladiatorAnimations>();        
         animator = GetComponent<Animator>();
 
     }
