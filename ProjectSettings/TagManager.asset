@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyLevel1
   - MainMenu
+  - ArenaCamera
   layers:
   - Default
   - TransparentFX

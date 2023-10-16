@@ -14,6 +14,8 @@ public class L1EnemyController : MonoBehaviour{
 
     private Transform gladiatorTarget;
 
+    private GameObject gladiator;
+
     [SerializeField]
     private float movementSpeed =  L1EnemyModel.MOVEMENT_SPEED;
 
@@ -34,12 +36,31 @@ public class L1EnemyController : MonoBehaviour{
 
     public GameObject attackPoint;
 
+    private Vector3 stopPoint = new Vector3(0,50,-40);
 
+    private GameObject mainCamera;
+
+    private GameObject arenaCamera;
+
+    private bool uncutSceneDone;
 
     private void Awake() {
         enemyAnimations = GetComponent<L1EnemyAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).transform;
+        gladiator = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG);
+        gladiatorTarget = gladiator.transform;
+
+        //Load Uncut Scene
+        navMeshAgent.enabled = false;
+        arenaCamera = GameObject.FindGameObjectWithTag("ArenaCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera.SetActive(false);
+        arenaCamera.SetActive(true);
+        
+    }
+
+    private void LoadUncutScene(){
+
     }
 
     private void Start() {
@@ -50,14 +71,31 @@ public class L1EnemyController : MonoBehaviour{
 
     private void Update() {
 
-        if(enemyState == EnemyState.CHASE){
-            ChaseGladiator();
+        
+        if(navMeshAgent.enabled){
+            if(enemyState == EnemyState.CHASE){
+                ChaseGladiator();
+            }
+
+            if(enemyState == EnemyState.ATTACK){
+                AttackToGladiator();
+            }
+        }
+        if(!uncutSceneDone){
+            print("test");
+            Vector3 newPosition = new Vector3(0, arenaCamera.transform.position.y-1, -40);
+            
+            if(newPosition.y >= stopPoint.y){
+                arenaCamera.transform.position = arenaCamera.transform.position - Vector3.up * 10 * Time.deltaTime;        
+            }else{
+                uncutSceneDone = true;
+                mainCamera.SetActive(true);
+                arenaCamera.SetActive(false);
+                navMeshAgent.enabled = true;
+            }
         }
 
-        if(enemyState == EnemyState.ATTACK){
-            AttackToGladiator();
-        }
-        
+    
     }
 
 
