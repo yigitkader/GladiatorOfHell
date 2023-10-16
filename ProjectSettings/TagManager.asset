@@ -10,6 +10,7 @@ TagManager:
   - EnemyLevel1
   - MainMenu
   - ArenaCamera
+  - HealthUICanvas
   layers:
   - Default
   - TransparentFX

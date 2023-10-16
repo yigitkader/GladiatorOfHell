@@ -10,9 +10,13 @@ using System.Threading.Tasks;
 public class MainMenuScript : MonoBehaviour
 {
 
+    private void Awake() {
+        //DontDestroyOnLoad(this.gameObject);
+
+    }
     async public void PlayLevel1(){ 
         
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
 
    }
 
