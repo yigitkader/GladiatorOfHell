@@ -20,7 +20,7 @@ public class L1HealthScript : MonoBehaviour
     public bool isPlayer;
 
     [SerializeField]
-    private Image healthUI;
+    public Image healthUI;
 
     [HideInInspector]
     public bool shieldActived;

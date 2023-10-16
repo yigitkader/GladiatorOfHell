@@ -44,6 +44,10 @@ public class L1EnemyController : MonoBehaviour{
 
     private bool uncutSceneDone;
 
+    private GameObject healthUICanvas;
+
+
+
     private void Awake() {
         enemyAnimations = GetComponent<L1EnemyAnimations>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -56,7 +60,9 @@ public class L1EnemyController : MonoBehaviour{
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera.SetActive(false);
         arenaCamera.SetActive(true);
-        
+        healthUICanvas = GameObject.FindGameObjectWithTag("HealthUICanvas");
+        healthUICanvas.SetActive(false);
+
     }
 
     private void LoadUncutScene(){
@@ -82,7 +88,6 @@ public class L1EnemyController : MonoBehaviour{
             }
         }
         if(!uncutSceneDone){
-            print("test");
             Vector3 newPosition = new Vector3(0, arenaCamera.transform.position.y-1, -40);
             
             if(newPosition.y >= stopPoint.y){
@@ -92,6 +97,7 @@ public class L1EnemyController : MonoBehaviour{
                 mainCamera.SetActive(true);
                 arenaCamera.SetActive(false);
                 navMeshAgent.enabled = true;
+                healthUICanvas.SetActive(true);
             }
         }
 
