@@ -41,5 +41,19 @@ public class GladiatorAnimations : MonoBehaviour
         animator.SetTrigger(AnimationTags.G_STANDING_MELEE_360_ATTACK_STATE);
     }
 
+    public void G_StandingMeleeBackhandAttack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_MELEE_BACKHAND_ATTACK_STATE);
+    }
+
+    public void G_StandingMeleeComboAttack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_MELEE_COMBO_ATTACK_STATE);
+    }
+
+    public void G_SwordAndShieldAttack(){
+        animator.SetTrigger(AnimationTags.G_SWORDANDSHIELDSLASH_ATTACK_STATE);
+    }
     
+    public void G_StandingMeleeDownwardAttack(){
+        animator.SetTrigger(AnimationTags.G_STANDING_MELEE_DOWNWARD_ATTACK_STATE);
+    }
 }

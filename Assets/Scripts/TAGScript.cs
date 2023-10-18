@@ -29,14 +29,19 @@ public class AnimationTags{
 
     public const string G_STANDING_MELEE_MID_ATTACK_STATE="G_Standing_Melee_Mid_Attack_State";
 
-    public const string G_STANDING_2H_MAGIC_ATTACK_STATE="G_Standing_2H_Magic_Attack_State";
-
     public const string G_STANDING_MELEE_360_ATTACK_STATE="G_Standing_Melee_360_Attack_State";
 
+    public const string G_STANDING_MELEE_BACKHAND_ATTACK_STATE="G_Standing_Melee_Backhand_Attack_State";
+
+    public const string G_STANDING_MELEE_COMBO_ATTACK_STATE = "G_Standing_Melee_Combo_Attack_State";
+
+    public const string G_SWORDANDSHIELDSLASH_ATTACK_STATE = "G_SwordAndShieldSlash_Attack_State";
+
+    public const string G_STANDING_MELEE_DOWNWARD_ATTACK_STATE= "G_Standing_Melee_Downward_Attack_State";
+
+    public const string G_STANDING_2H_MAGIC_ATTACK_STATE="G_Standing_2H_Magic_Attack_State";
+    
     public const string SWORD_AND_SHIELD_BLOCK_DEFEND_STATE="SwordAndShieldBlockDefendState";
-
-
-
     // Enemies
 
     public const string ATTACK_1_STATE = "Attack1";
