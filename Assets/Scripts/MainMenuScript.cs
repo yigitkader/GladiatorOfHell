@@ -14,7 +14,7 @@ public class MainMenuScript : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
 
     }
-    async public void PlayLevel1(){ 
+    public void PlayLevel1(){ 
         
         SceneManager.LoadSceneAsync(1);
 
