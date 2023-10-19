@@ -42,7 +42,7 @@ public class GladiatorMoveScript : MonoBehaviour
 
     private void Move(){
         if(Input.GetAxis(Axis.VERTICAL_AXIS) >0){
-            
+
             if(!GladiatorAnimationsRunning()){
                 Vector3 moveDirection = transform.forward;
                 moveDirection.y -= gravity * Time.deltaTime;

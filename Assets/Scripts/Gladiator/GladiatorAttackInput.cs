@@ -38,11 +38,11 @@ public class GladiatorAttackInput : MonoBehaviour
             gladiatorShieldScript.ActivateShield(false);
         }
 
-        if(!IsAnyAttackAnimationsRunningNow()){
-            if(Input.GetKeyDown(KeyCode.K)){
-                RandomAttack();
-            }
+        
+        if(Input.GetKeyDown(KeyCode.K)){
+            RandomAttack();
         }
+    
 
 
         if(Input.GetKeyUp(KeyCode.K)){
