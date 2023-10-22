@@ -60,4 +60,8 @@ public class GladiatorAnimations : MonoBehaviour
     public void DamageHitReaction(){
         animator.SetTrigger(AnimationTags.DAMAGE_HIT_REACTION_STATE);
     }
+
+    public void Victory(){
+        animator.SetTrigger(AnimationTags.VICTORY_STATE);
+    }
 }

@@ -54,5 +54,7 @@ public class AnimationTags{
 
     public const string DAMAGE_HIT_REACTION_STATE = "DamageHitReaction";
 
+    public const string VICTORY_STATE = "Victory";
+
 
 }
