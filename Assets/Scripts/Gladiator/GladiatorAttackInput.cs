@@ -22,8 +22,6 @@ public class GladiatorAttackInput : MonoBehaviour
         gladiatorShieldScript = GetComponent<GladiatorShieldScript>();
         characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
         animator = GetComponent<Animator>();
-
-
     }
 
     // Update is called once per frame
@@ -40,12 +38,15 @@ public class GladiatorAttackInput : MonoBehaviour
             gladiatorShieldScript.ActivateShield(false);
         }
 
+        
         if(Input.GetKeyDown(KeyCode.K)){
             RandomAttack();
         }
+    
+
 
         if(Input.GetKeyUp(KeyCode.K)){
-            
+                
         }
         
     }
@@ -67,7 +68,7 @@ public class GladiatorAttackInput : MonoBehaviour
         }else if(attackNumber == 3){
             if(G_StandingMeleeBackhandAttackReady()){
                 gladiatorAnimations.G_StandingMeleeBackhandAttack();
-                characterSoundFX.SoundAttack3();
+                characterSoundFX.SoundAttack1();
             }
         }else if(attackNumber == 4){
             if(G_StandingMeleeComboAttackReady()){
@@ -77,7 +78,7 @@ public class GladiatorAttackInput : MonoBehaviour
         }else if(attackNumber == 5){
             if(G_SwordAndShieldSlashAttackReady()){
                 gladiatorAnimations.G_SwordAndShieldAttack();
-                characterSoundFX.SoundAttack3();
+                characterSoundFX.SoundAttack1();
             }
         }else if(attackNumber == 6){
             if(G_StandingMeleeDownwardAttackReady()){
@@ -106,6 +107,24 @@ public class GladiatorAttackInput : MonoBehaviour
     }
 
 
+
+
+    private bool IsAnyAttackAnimationsRunningNow(){
+        if( 
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+        ){
+          return true;  
+        }
+
+        return false;
+    }
+
     
     // These functions is checking, is there any function running same time for attack 
     private bool G_StandingMeleeMidAttackReady(){
@@ -117,8 +136,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }
@@ -135,8 +152,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }
@@ -153,8 +168,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }
@@ -171,8 +184,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") 
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }
@@ -189,8 +200,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }
@@ -208,8 +217,6 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") 
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return false;  
         }

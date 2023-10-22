@@ -62,16 +62,15 @@ public class L1HealthScript : MonoBehaviour
 
             if(isPlayer){
                 
-            //GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1).GetComponent<L1EnemyController>().enabled = false;
-
                 GetComponent<GladiatorMoveScript>().enabled = false;
                 GetComponent<GladiatorAttackInput>().enabled = false;
 
                 Camera.main.transform.SetParent(null);
                 
                 //Stop Enemy
-                GetComponent<L1EnemyController>().enabled = false;
-                GetComponent<NavMeshAgent>().enabled =false;
+                var enemyTarget = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1);
+                enemyTarget.GetComponent<L1EnemyController>().enabled = false;
+                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;
 
             }else{
                 GetComponent<L1EnemyController>().enabled = false;

@@ -42,7 +42,7 @@ public class GladiatorMoveScript : MonoBehaviour
 
     private void Move(){
         if(Input.GetAxis(Axis.VERTICAL_AXIS) >0){
-            
+
             if(!GladiatorAnimationsRunning()){
                 Vector3 moveDirection = transform.forward;
                 moveDirection.y -= gravity * Time.deltaTime;
@@ -109,9 +109,14 @@ public class GladiatorMoveScript : MonoBehaviour
 
     private bool GladiatorAnimationsRunning(){
         
-        if( animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+        if( 
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Mid_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_360_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){
           return true;  
