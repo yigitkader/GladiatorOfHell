@@ -39,6 +39,10 @@ public class L1EnemyAnimations : MonoBehaviour
     }
 
 
+    public void DamageHitReaction(){
+        animator.SetTrigger(AnimationTags.DAMAGE_HIT_REACTION_STATE);
+    }
+
 
 
     public void RandomAttack(){

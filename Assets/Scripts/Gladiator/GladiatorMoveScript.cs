@@ -117,7 +117,8 @@ public class GladiatorMoveScript : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return true;  
         }

@@ -7,7 +7,7 @@ public class CharacterSoundFX : MonoBehaviour{
     private AudioSource soundFX;
 
     [SerializeField]
-    private AudioClip attackSound1,attackSound2,attackSound3,attackSound4,dieSound;
+    private AudioClip attackSound1,attackSound2,attackSound3,attackSound4,dieSound,damageHitSound1,damageHitSound2;
 
     private void Awake() {
         soundFX = GetComponent<AudioSource>();
@@ -36,6 +36,15 @@ public class CharacterSoundFX : MonoBehaviour{
 
     public void SoundDie(){
         soundFX.clip = dieSound;
+        soundFX.Play();
+    }
+
+    public void DamageHitSound1(){
+        soundFX.clip = damageHitSound1;
+        soundFX.Play();
+    }
+    public void DamageHitSound2(){
+        soundFX.clip = damageHitSound2;
         soundFX.Play();
     }
 }

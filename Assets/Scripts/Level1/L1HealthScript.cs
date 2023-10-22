@@ -27,9 +27,16 @@ public class L1HealthScript : MonoBehaviour
 
     private CharacterSoundFX characterSoundFX;
 
+    private GladiatorAnimations gladiatorAnimations;
+
+    private L1EnemyAnimations enemyAnimations;
+
 
     private void Awake() {
         characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
+
+        gladiatorAnimations = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).GetComponent<GladiatorAnimations>();
+        enemyAnimations = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1).GetComponent<L1EnemyAnimations>();
     }
 
     private void Update() {
@@ -44,6 +51,14 @@ public class L1HealthScript : MonoBehaviour
         if(shieldActived){
             // will change for other levels
             return;
+        }
+
+        if(isPlayer){
+            characterSoundFX.DamageHitSound1();
+            gladiatorAnimations.DamageHitReaction();
+        }else{
+            characterSoundFX.DamageHitSound2();
+            enemyAnimations.DamageHitReaction();
         }
 
         health -= damage;

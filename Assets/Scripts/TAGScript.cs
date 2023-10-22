@@ -52,4 +52,7 @@ public class AnimationTags{
 
     public const string ATTACK_4_STATE = "Attack4";
 
+    public const string DAMAGE_HIT_REACTION_STATE = "DamageHitReaction";
+
+
 }
