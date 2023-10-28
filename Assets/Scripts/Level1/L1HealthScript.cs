@@ -42,7 +42,7 @@ public class L1HealthScript : MonoBehaviour
     private void Update() {
         if(playerDied){
             // Can switch with animation
-            RotateAfterDeath();
+            //RotateAfterDeath();
         }
     }
 
@@ -77,27 +77,30 @@ public class L1HealthScript : MonoBehaviour
 
             if(isPlayer){
                 
+                gladiatorAnimations.Die();
+                StartCoroutine(EnemyVictoryAnimationRun());
 
+                var gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG);
+                StartCoroutine(StopGladiator(gladiatorTarget));
 
-                GetComponent<GladiatorMoveScript>().enabled = false;
-                GetComponent<GladiatorAttackInput>().enabled = false;
-                GetComponent<Animator>().enabled = false;
                 Camera.main.transform.SetParent(null);
-                
-
-                enemyAnimations.Victory();
-
+        
                 
                 //Stop Enemy
                 var enemyTarget = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1);
-
                 StartCoroutine(StopEnemy(enemyTarget));
             }else{
-                
-                GetComponent<L1EnemyController>().enabled = false;
-                GetComponent<NavMeshAgent>().enabled =false;
 
-                gladiatorAnimations.Victory();
+                enemyAnimations.Die();
+                StartCoroutine(GladiatorVictoryAnimationRun());
+                
+                // GetComponent<L1EnemyController>().enabled = false;
+                // GetComponent<NavMeshAgent>().enabled =false;
+
+                var enemyTarget = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1);
+
+                StartCoroutine(StopEnemy(enemyTarget));
+
 
                 var gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG);
 
@@ -119,21 +122,21 @@ public class L1HealthScript : MonoBehaviour
 
     IEnumerator StopEnemy(GameObject enemyTarget){
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         enemyTarget.GetComponent<L1EnemyController>().enabled = false;
         enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
-        //enemyTarget.GetComponent<Animator>().enabled = false;
+        enemyTarget.GetComponent<Animator>().enabled = false;
     }
 
 
     IEnumerator StopGladiator(GameObject gladiatorTarget){
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
         gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
-        //gladiatorTarget.GetComponent<Animator>().enabled = false;
+        gladiatorTarget.GetComponent<Animator>().enabled = false;
     }
 
     IEnumerator AllowRotate(){
@@ -143,18 +146,15 @@ public class L1HealthScript : MonoBehaviour
     }
 
 
-    private void StopEnemy(){
-        GetComponent<L1EnemyController>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled =false;
+    IEnumerator GladiatorVictoryAnimationRun(){
+        yield return new WaitForSeconds(5f);
+        gladiatorAnimations.Victory();
     }
 
-    private void StopGladiator(){
-        GetComponent<GladiatorMoveScript>().enabled = false;
-        GetComponent<GladiatorAttackInput>().enabled = false;
-
-        Camera.main.transform.SetParent(null);
+    IEnumerator EnemyVictoryAnimationRun(){
+        yield return new WaitForSeconds(5f);
+        enemyAnimations.Victory();
     }
-
 
 
 

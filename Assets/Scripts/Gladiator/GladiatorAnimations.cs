@@ -64,4 +64,8 @@ public class GladiatorAnimations : MonoBehaviour
     public void Victory(){
         animator.SetTrigger(AnimationTags.VICTORY_STATE);
     }
+
+    public void Die(){
+        animator.SetTrigger(AnimationTags.DIE_STATE);
+    }
 }

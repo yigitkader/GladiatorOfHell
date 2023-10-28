@@ -47,6 +47,10 @@ public class L1EnemyAnimations : MonoBehaviour
         animator.SetTrigger(AnimationTags.VICTORY_STATE);
     }
 
+    public void Die(){
+        animator.SetTrigger(AnimationTags.DIE_STATE);
+    }
+
 
     public void RandomAttack(){
         int attackNumber = Random.Range(0,4);

@@ -56,5 +56,7 @@ public class AnimationTags{
 
     public const string VICTORY_STATE = "Victory";
 
+    public const string DIE_STATE = "Die";
+
 
 }
