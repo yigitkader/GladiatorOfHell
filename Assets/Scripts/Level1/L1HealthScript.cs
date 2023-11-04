@@ -46,9 +46,9 @@ public class L1HealthScript : MonoBehaviour
     }
 
     private void Update() {
+        
         if(playerDied){
-            // Can switch with animation
-            //RotateAfterDeath();
+            RotateAfterDeath();
         }
     }
 
@@ -82,66 +82,55 @@ public class L1HealthScript : MonoBehaviour
             StartCoroutine(AllowRotate()); // Need to delete or change
 
             if(isPlayer){
-                gladiatorAnimations.Die();
+                enemyTarget.GetComponent<Animator>().enabled = false;
+                enemyTarget.GetComponent<Animator>().enabled = true;
+                
+                gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
+                gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
 
                 Camera.main.transform.SetParent(null);
-
-                characterSoundFX.enabled = false;
                 
                 
-
-                StartCoroutine(StopGladiator(gladiatorTarget,4));
-
-                StartCoroutine(EnemyVictoryAnimationRun());        
-
-                StartCoroutine(StopEnemy(enemyTarget,7f));
+                enemyTarget.GetComponent<L1EnemyController>().enabled = false;
+                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
+            
+                enemyAnimations.Victory();
+                gladiatorTarget.GetComponent<Animator>().enabled = false;
+                //StartCoroutine(StopGladiatorAnimation(gladiatorTarget,3f));
+                
             }else{
+                gladiatorTarget.GetComponent<Animator>().enabled = false;
+                gladiatorTarget.GetComponent<Animator>().enabled = true;
 
-                enemyAnimations.Die();
+                enemyTarget.GetComponent<L1EnemyController>().enabled = false;
+                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
 
-                characterSoundFX.enabled = false;
-                
-                StartCoroutine(StopEnemy(enemyTarget,4));
+                                
+                gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
+                gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
+                gladiatorAnimations.Victory();
 
-                StartCoroutine(GladiatorVictoryAnimationRun());
-  
-        
-                StartCoroutine(StopGladiator(gladiatorTarget,7));
+                enemyTarget.GetComponent<Animator>().enabled = false;
             }
         }
 
     }
 
 
-    IEnumerator StopEnemy(GameObject enemyTarget,float delay){
+    IEnumerator StopEnemyAnimation(GameObject enemyTarget,float delay){
         
         yield return new WaitForSeconds(delay);
-
-        enemyTarget.GetComponent<L1EnemyController>().enabled = false;
-        enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
         enemyTarget.GetComponent<Animator>().enabled = false;
     }
 
 
-    IEnumerator StopGladiator(GameObject gladiatorTarget,float delay){
+    IEnumerator StopGladiatorAnimation(GameObject gladiatorTarget,float delay){
         
         yield return new WaitForSeconds(delay);
-
-        gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
-        gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
         gladiatorTarget.GetComponent<Animator>().enabled = false;
     }
 
 
-    IEnumerator GladiatorVictoryAnimationRun(){
-        yield return new WaitForSeconds(5f);
-        gladiatorAnimations.Victory();
-    }
-
-    IEnumerator EnemyVictoryAnimationRun(){
-        yield return new WaitForSeconds(5f);
-        enemyAnimations.Victory();
-    }
 
     IEnumerator AllowRotate(){
         playerDied = true;
