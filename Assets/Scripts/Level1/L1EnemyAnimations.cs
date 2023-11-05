@@ -53,7 +53,7 @@ public class L1EnemyAnimations : MonoBehaviour
 
 
     public void RandomAttack(){
-        int attackNumber = Random.Range(0,4);
+        int attackNumber = Random.Range(0,3);
         if(attackNumber == 0){
             characterSoundFX.SoundAttack1();
             Attack1();
@@ -63,10 +63,11 @@ public class L1EnemyAnimations : MonoBehaviour
         }else if(attackNumber == 2){
             characterSoundFX.SoundAttack3();
             Attack3();
-        }else if(attackNumber == 3){
-            characterSoundFX.SoundAttack4();
-            Attack4();
-        }      
+        }
+        // else if(attackNumber == 3){
+        //     characterSoundFX.SoundAttack4();
+        //     Attack4();
+        // }      
     }
 
 

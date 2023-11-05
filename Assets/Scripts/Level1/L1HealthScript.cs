@@ -62,6 +62,13 @@ public class L1HealthScript : MonoBehaviour
         health -= damage;
 
         if(health > 0){
+            if(playerDied){
+                gladiatorTarget.GetComponent<Animator>().enabled = false;
+                gladiatorTarget.GetComponent<Animator>().enabled = true;
+
+                enemyTarget.GetComponent<Animator>().enabled = false;
+                enemyTarget.GetComponent<Animator>().enabled = true;
+            }
             if(isPlayer){
                 characterSoundFX.DamageHitSound1();
                 gladiatorAnimations.DamageHitReaction();
@@ -95,9 +102,7 @@ public class L1HealthScript : MonoBehaviour
                 enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
             
                 enemyAnimations.Victory();
-                gladiatorTarget.GetComponent<Animator>().enabled = false;
-                //StartCoroutine(StopGladiatorAnimation(gladiatorTarget,3f));
-                
+                gladiatorTarget.GetComponent<Animator>().enabled = false;                
             }else{
                 gladiatorTarget.GetComponent<Animator>().enabled = false;
                 gladiatorTarget.GetComponent<Animator>().enabled = true;
