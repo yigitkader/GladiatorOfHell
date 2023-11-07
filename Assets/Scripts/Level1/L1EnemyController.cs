@@ -46,6 +46,8 @@ public class L1EnemyController : MonoBehaviour{
 
     private GameObject healthUICanvas;
 
+    private GameObject touchUI;
+
 
 
     private void Awake() {
@@ -53,6 +55,9 @@ public class L1EnemyController : MonoBehaviour{
         navMeshAgent = GetComponent<NavMeshAgent>();
         gladiator = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG);
         gladiatorTarget = gladiator.transform;
+    
+        touchUI = GameObject.FindGameObjectWithTag("TouchUI");
+        touchUI.SetActive(false);
 
         //Load Uncut Scene
         navMeshAgent.enabled = false;
@@ -98,6 +103,7 @@ public class L1EnemyController : MonoBehaviour{
                 arenaCamera.SetActive(false);
                 navMeshAgent.enabled = true;
                 healthUICanvas.SetActive(true);
+                touchUI.SetActive(true);
             }
         }
 
