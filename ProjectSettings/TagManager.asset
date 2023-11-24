@@ -11,6 +11,7 @@ TagManager:
   - MainMenu
   - ArenaCamera
   - HealthUICanvas
+  - TouchUI
   layers:
   - Default
   - TransparentFX
