@@ -56,4 +56,16 @@ public class GladiatorAnimations : MonoBehaviour
     public void G_StandingMeleeDownwardAttack(){
         animator.SetTrigger(AnimationTags.G_STANDING_MELEE_DOWNWARD_ATTACK_STATE);
     }
+
+    public void DamageHitReaction(){
+        animator.SetTrigger(AnimationTags.DAMAGE_HIT_REACTION_STATE);
+    }
+
+    public void Victory(){
+        animator.SetTrigger(AnimationTags.VICTORY_STATE);
+    }
+
+    public void Die(){
+        animator.SetTrigger(AnimationTags.DIE_STATE);
+    }
 }

@@ -117,7 +117,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return true;  
         }
@@ -135,7 +136,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") || 
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -151,7 +153,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -167,7 +170,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -183,7 +187,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") 
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -199,7 +204,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -216,7 +222,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") 
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return false;  
         }
@@ -233,7 +240,8 @@ public class GladiatorAttackInput : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Backhand_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Combo_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
             //animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
             //animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
         ){

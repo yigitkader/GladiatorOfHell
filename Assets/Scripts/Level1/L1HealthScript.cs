@@ -27,14 +27,27 @@ public class L1HealthScript : MonoBehaviour
 
     private CharacterSoundFX characterSoundFX;
 
+    private GladiatorAnimations gladiatorAnimations;
+
+    private L1EnemyAnimations enemyAnimations;
+
+    private GameObject gladiatorTarget;
+
+    private GameObject enemyTarget;
 
     private void Awake() {
         characterSoundFX = GetComponentInChildren<CharacterSoundFX>();
+
+        gladiatorAnimations = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG).GetComponent<GladiatorAnimations>();
+        enemyAnimations = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1).GetComponent<L1EnemyAnimations>();
+
+        gladiatorTarget = GameObject.FindGameObjectWithTag(Tags.GLADIATOR_TAG);
+        enemyTarget = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1);
     }
 
     private void Update() {
+        
         if(playerDied){
-            // Can switch with animation
             RotateAfterDeath();
         }
     }
@@ -48,6 +61,23 @@ public class L1HealthScript : MonoBehaviour
 
         health -= damage;
 
+        if(health > 0){
+            if(playerDied){
+                gladiatorTarget.GetComponent<Animator>().enabled = false;
+                gladiatorTarget.GetComponent<Animator>().enabled = true;
+
+                enemyTarget.GetComponent<Animator>().enabled = false;
+                enemyTarget.GetComponent<Animator>().enabled = true;
+            }
+            if(isPlayer){
+                characterSoundFX.DamageHitSound1();
+                gladiatorAnimations.DamageHitReaction();
+            }else{
+                characterSoundFX.DamageHitSound2();
+                enemyAnimations.DamageHitReaction();
+            }
+        }
+
         if(healthUI != null){
             healthUI.fillAmount = health / 100f;
         }
@@ -56,38 +86,55 @@ public class L1HealthScript : MonoBehaviour
             
             characterSoundFX.SoundDie();
 
-            GetComponent<Animator>().enabled = false;
-
-            StartCoroutine(AllowRotate());
+            StartCoroutine(AllowRotate()); // Need to delete or change
 
             if(isPlayer){
+                enemyTarget.GetComponent<Animator>().enabled = false;
+                enemyTarget.GetComponent<Animator>().enabled = true;
                 
-                GetComponent<GladiatorMoveScript>().enabled = false;
-                GetComponent<GladiatorAttackInput>().enabled = false;
+                gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
+                gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
 
                 Camera.main.transform.SetParent(null);
                 
-                //Stop Enemy
-                var enemyTarget = GameObject.FindGameObjectWithTag(Tags.ENEMY_TAG_LEVEL1);
+                
                 enemyTarget.GetComponent<L1EnemyController>().enabled = false;
-                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;
-
+                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
+            
+                enemyAnimations.Victory();
+                gladiatorTarget.GetComponent<Animator>().enabled = false;                
             }else{
-                GetComponent<L1EnemyController>().enabled = false;
-                GetComponent<NavMeshAgent>().enabled =false;
+                gladiatorTarget.GetComponent<Animator>().enabled = false;
+                gladiatorTarget.GetComponent<Animator>().enabled = true;
+
+                enemyTarget.GetComponent<L1EnemyController>().enabled = false;
+                enemyTarget.GetComponent<NavMeshAgent>().enabled =false;    
+
+                                
+                gladiatorTarget.GetComponent<GladiatorMoveScript>().enabled = false;
+                gladiatorTarget.GetComponent<GladiatorAttackInput>().enabled = false;
+                gladiatorAnimations.Victory();
+
+                enemyTarget.GetComponent<Animator>().enabled = false;
             }
         }
 
     }
- 
 
-    private void RotateAfterDeath(){
-        transform.eulerAngles = new Vector3(
-            Mathf.Lerp(transform.eulerAngles.x,xDeathDegree,Time.deltaTime * deathSmooth),
-            transform.eulerAngles.y,
-            transform.eulerAngles.z
-        );
+
+    IEnumerator StopEnemyAnimation(GameObject enemyTarget,float delay){
+        
+        yield return new WaitForSeconds(delay);
+        enemyTarget.GetComponent<Animator>().enabled = false;
     }
+
+
+    IEnumerator StopGladiatorAnimation(GameObject gladiatorTarget,float delay){
+        
+        yield return new WaitForSeconds(delay);
+        gladiatorTarget.GetComponent<Animator>().enabled = false;
+    }
+
 
 
     IEnumerator AllowRotate(){
@@ -97,18 +144,13 @@ public class L1HealthScript : MonoBehaviour
     }
 
 
-    private void StopEnemy(){
-        GetComponent<L1EnemyController>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled =false;
+    private void RotateAfterDeath(){
+        transform.eulerAngles = new Vector3(
+            Mathf.Lerp(transform.eulerAngles.x,xDeathDegree,Time.deltaTime * deathSmooth),
+            transform.eulerAngles.y,
+            transform.eulerAngles.z
+        );
     }
-
-    private void StopGladiator(){
-        GetComponent<GladiatorMoveScript>().enabled = false;
-        GetComponent<GladiatorAttackInput>().enabled = false;
-
-        Camera.main.transform.SetParent(null);
-    }
-
 
 
 

@@ -18,7 +18,7 @@ public class GladiatorMoveScript : MonoBehaviour
 
     private Animator animator;
 
-
+    public Joystick joystick;
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +26,93 @@ public class GladiatorMoveScript : MonoBehaviour
         gladiatorController = GetComponent<CharacterController>();
         gladiatorAnimations = GetComponent<GladiatorAnimations>();        
         animator = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Rotate();
+
+        print("joystick vertical: "+joystick.Vertical.ToString());
+        print("joystick horizontal: "+joystick.Horizontal.ToString());
+
+        MoveJoystick();
+        RotateJoystick();
     
-        AnimateRun();
-        AnimateWalkBack(); 
+        AnimateRunJoystick();
+        AnimateWalkBackJoystick(); 
     }
+
+
+
+
+    private void MoveJoystick(){
+
+
+        if(joystick.Vertical > 0.3){
+            if(!GladiatorAnimationsRunning()){
+                Vector3 moveDirection = transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
+
+                gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            }
+        }else if(joystick.Vertical < -0.3){
+            if(!GladiatorAnimationsRunning()){
+                Vector3 moveDirection = -transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
+
+                gladiatorController.Move(moveDirection * movementSpeed * Time.deltaTime);
+
+            }
+        }else{
+            gladiatorController.Move(Vector3.zero);
+        }
+    }
+
+
+    private void RotateJoystick(){
+        Vector3 rotationDirection = Vector3.zero;
+        if(joystick.Horizontal < -0.5f){
+            rotationDirection = transform.TransformDirection(Vector3.left);
+
+        } 
+        
+        if(joystick.Horizontal > 0.5f){
+            rotationDirection = transform.TransformDirection(Vector3.right);
+        }
+
+        if(rotationDirection != Vector3.zero){
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation, 
+                Quaternion.LookRotation(rotationDirection),
+                rotationDegreesPerSecond * Time.deltaTime
+            );
+        }
+    }
+
+
+
+    void AnimateRunJoystick(){
+        if(gladiatorController.velocity.sqrMagnitude != 0f && joystick.Vertical > 0.3f){
+            gladiatorAnimations.Run(true);
+        }else{
+            gladiatorAnimations.Run(false);
+        }
+    }
+
+
+    void AnimateWalkBackJoystick(){
+        //Debug.Log(gladiatorController.velocity.sqrMagnitude);
+        if(gladiatorController.velocity.sqrMagnitude != 0f && joystick.Vertical < -0.3f){
+            gladiatorAnimations.WalkBack(true);
+        }else{
+            gladiatorAnimations.WalkBack(false);
+        }
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
 
 
     private void Move(){
@@ -65,7 +140,6 @@ public class GladiatorMoveScript : MonoBehaviour
         }
     }
 
-
     private void Rotate(){
         Vector3 rotationDirection = Vector3.zero;
         if(Input.GetAxis(Axis.HORIZONTAL_AXIS) < 0){
@@ -87,9 +161,10 @@ public class GladiatorMoveScript : MonoBehaviour
     }
 
 
+
     void AnimateRun(){
         //Debug.Log(gladiatorController.velocity.sqrMagnitude);
-        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) > 0){
+        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) > 0f){
             gladiatorAnimations.Run(true);
         }else{
             gladiatorAnimations.Run(false);
@@ -99,7 +174,7 @@ public class GladiatorMoveScript : MonoBehaviour
 
     void AnimateWalkBack(){
         //Debug.Log(gladiatorController.velocity.sqrMagnitude);
-        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) < 0){
+        if(gladiatorController.velocity.sqrMagnitude != 0f && Input.GetAxis(Axis.VERTICAL_AXIS) < 0f){
             gladiatorAnimations.WalkBack(true);
         }else{
             gladiatorAnimations.WalkBack(false);
@@ -117,7 +192,8 @@ public class GladiatorMoveScript : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_SwordAndShieldSlash_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_Melee_Downward_Attack_State") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("G_Standing_2H_Magic_Attack_State") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState")
+            animator.GetCurrentAnimatorStateInfo(0).IsName("SwordAndShieldBlockDefendState") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("DamageHitReaction")
         ){
           return true;  
         }
